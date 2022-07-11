@@ -1,0 +1,104 @@
+h4{
+    font-size:x-large;
+    color: rgba(76, 77, 150, 0.913);;
+  }
+  
+  p{
+    color: rgb(193, 39, 39);
+    margin: 1em;
+    padding: 0;
+    font-size: small;
+  }
+  
+  body{
+    font-size: 15px;
+    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: transparent;
+    text-align: center;
+  }
+  
+  
+  
+  label{
+    display: flex;
+    justify-content: center;
+  }
+  
+  .dateInput{
+    display: flex;
+    justify-content: center;
+  }
+  
+  .dates {
+    width: 80%;
+  }
+  
+  form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  
+  .formInput input, .evDesc{
+    margin: 3em;
+    margin-bottom: 2em;
+    padding: 2%;
+    transition: border-color, background-color 1s;
+    outline: 0;
+    border-style: solid;
+    border-radius: 10%;
+    border-color: white;
+    border-bottom-color:rgba(110, 112, 202, 0.913);
+    width: 30%;
+  
+  }
+  
+  .formInput input:focus, .evDesc:focus{
+    border-color: rgba(195, 196, 244, 0.704);
+    background-color: rgba(211, 212, 244, 0.704);;
+    
+  }
+  
+  .labelBus{
+    margin: 1em;
+  }
+  
+  .smallChoice, .bigChoice, .busCheck{
+    display: inline;
+    margin: 1%;
+    margin-top: 2%;
+  }
+  
+  .evDesc{
+    height: 7em;
+    width: 30%;
+  }
+  
+  .subButton{
+    border-style: solid;
+    border-radius: 10%;
+    border-color: white;
+    background-color: rgba(195, 196, 244, 0.704);
+    transition: background-color 1s;
+    width: 20%;
+    padding: 1%;
+    
+    align-self: center;
+  }
+  
+  .subButton:hover{
+    background-color: rgba(124, 125, 207, 0.913);
+    align-self: center;
+  }
+  
+  .winScreen{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    text-align: center;
+  }

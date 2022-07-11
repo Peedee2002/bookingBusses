@@ -2,7 +2,7 @@ import React from "react";
 import {useState} from 'react';
 import {useFormik} from 'formik';
 import * as Yup from 'yup';
-import './index.css';
+import './index.module.css';
 
 function App() {
   const today = new Date();
@@ -27,10 +27,7 @@ function App() {
         .email("Please check that this is a correct email")
         .required("Please fill in your email"),
       
-      dateStart: Yup.date().required("Please fill in the event's start date"),
-      dateEnd: Yup.date().required("Please fill in the event's end date"),
-      
-      evDesc: Yup.string().required("Please describe your event")
+      evDesc: Yup.string().required("Please describe your event"),
 
       dateStart: Yup.date().min(today, "Please check this start date").required("Please fill in the event's start date"),
       dateEnd: Yup.date().min(Yup.ref('dateStart'), "Please check this end date").required("Please fill in the event's end date"),
