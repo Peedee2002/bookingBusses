@@ -13,7 +13,9 @@ export default function Request() {
       fullName:'',
       email:'',
       dateStart:'',
+      timeStart:'',
       dateEnd:'',
+      timeEnd:'',
       evDesc:''
     },
 
@@ -25,6 +27,7 @@ export default function Request() {
       
       dateStart: Yup.date().required("Please fill in the event's start date"),
       dateEnd: Yup.date().required("Please fill in the event's end date"),
+      
       evDesc: Yup.string().required("Please describe your event")
 
     }),

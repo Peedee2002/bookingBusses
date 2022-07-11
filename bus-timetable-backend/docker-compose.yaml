@@ -3,14 +3,14 @@ version: '3.8'
 services:
   mongodb:
     image: mongo:5.0.9
-    container_name: mongodb_groupr
+    container_name: mongodb_busses
     volumes:
       # Named volume to persist database
-      - groupr_data:/data/db
+      - mongodb_busses:/data/db
     env_file:
-      - ./env/backend.env
+      - ./.env
     ports:
-      - '27017:27017'
+      - '27018:27017'
 
 volumes:
-  groupr_data:
+  mongodb_busses:

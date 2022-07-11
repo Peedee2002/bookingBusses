@@ -1,4 +1,6 @@
 import * as React from "react"
+import { useState } from "react"
+import { useEffect } from "react"
 import TimeTable from "react-timetable-events"
 // styles
 const pageStyles = {
@@ -13,12 +15,19 @@ const headingStyles = {
 }
 
 const IndexPage = () => {
+  const [data, setData] = useState({});
+  const [bus, setBus] = useState("");
+  const [timeStart, setTimeStart] = useState("");
+  useEffect(() => {
+    fetch(`http://localhost:3000/api/get/${bus}/${timeStart}`)
+  })
   return (
     <main style={pageStyles}>
       <title>St Abraam Bus timetable</title>
       <a href="/request">
         make a request
       </a>
+      
       <h1 style={headingStyles}>
         Bus TimeTable
       </h1>
