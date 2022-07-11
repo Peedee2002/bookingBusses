@@ -2,9 +2,10 @@ import React from "react";
 import {useState} from 'react';
 import {useFormik} from 'formik';
 import * as Yup from 'yup';
-import * as style from  './index.module.css';
+import './index.css';
 
-export default function Request() {
+function App() {
+  const today = new Date();
 
   const [showResults, setShowResults] = useState(false)
 
@@ -19,6 +20,7 @@ export default function Request() {
       evDesc:''
     },
 
+    
     validationSchema: Yup.object({
       fullName: Yup.string().required("Please fill in your name"),
       email: Yup.string()
@@ -30,6 +32,14 @@ export default function Request() {
       
       evDesc: Yup.string().required("Please describe your event")
 
+      dateStart: Yup.date().min(today, "Please check this start date").required("Please fill in the event's start date"),
+      dateEnd: Yup.date().min(Yup.ref('dateStart'), "Please check this end date").required("Please fill in the event's end date"),
+
+      timeStart: Yup.string().required("Please fill in the time that this event starts at"),
+      timeEnd: Yup.string().required("Please fill in the time that this event ends at"),
+
+      evDesc: Yup.string().required("Please describe your event"),
+      
     }),
     
     onSubmit: (values) =>{
@@ -41,53 +51,73 @@ export default function Request() {
   return (
 
     <div>
-        <div className={style.winScreen} style={{display: showResults ? "block": "none"}}>
+        <div className="winScreen" style={{display: showResults ? "block": "none"}}>
           <h1>Success!</h1>
           <h4>Thank you. We will get back to you soon via email.</h4>
         </div>
-
-    <div>
-    <h4 className={style.instruction}> Please fill in your details so we can help you</h4>
-    
     
     <form onSubmit={formik.handleSubmit} style={{display: showResults ? "none": "block"}}>
-    
-      <div className={style.formInput}>
-        <input id="fullName" onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.fullName} type="text" className={style.fullName} placeholder="Full Name"></input>
+      <h4 className="instruction">Bus Sign-up Form</h4>
+      <div className="formInput">
+        <input id="fullName" onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.fullName} type="text" className="fullName" placeholder="Full Name"></input>
         {formik.touched.fullName && formik.errors.fullName ? <p>{formik.errors.fullName}</p> : null}
       </div>
 
-      <div className={style.formInput}>
-        <input id="email" onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.email} type="email" className={style.email} placeholder="Email"></input>
+      <div className="formInput">
+        <input id="email" onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.email} type="email" className="email" placeholder="Email"></input>
         {formik.touched.email && formik.errors.email ? <p>{formik.errors.email}</p> : null}
       </div>
 
-      <div className={style.formInput}>
-        <div className={style.dateInput}>
-          <div className={style.dates}>
-            <label for="dateStart" >Event Starts:</label>
-            <input id="dateStart" onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.dateStart} type="date" className={style.dateStart} ></input> 
+      <div className="formInput">
+        <div className="dateInput">
+          <div className="dates">
+            <label for="dateStart" >Event Starts</label>
+            <input id="dateStart" onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.dateStart} type="date" className="dateStart" ></input> 
             {formik.touched.dateStart && formik.errors.dateStart ? <p>{formik.errors.dateStart}</p> : null}
           </div>
           
           <div className="dates">
-            <label for="dateEnd">Event Ends:</label>
-            <input id="dateEnd" onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.dateEnd} type="date" className={style.dateEnd} ></input>
+            <label for="dateEnd">And the Event Ends</label>
+            <input id="dateEnd" onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.dateEnd} type="date" className="dateEnd" ></input>
             {formik.touched.dateEnd && formik.errors.dateEnd ? <p>{formik.errors.dateEnd}</p> : null}
           </div>
-
+          
         </div>
-
+      
+        <div className="dateInput">          
+          <div className="dates">
+            <label for="timeStart" >At:</label>
+            <input id="timeStart" onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.timeStart} type="time" className="timeStart" ></input> 
+            {formik.touched.timeStart && formik.errors.timeStart ? <p>{formik.errors.timeStart}</p> : null}
+          </div>
+           
+          <div className="dates">
+            <label for="timeEnd">At:</label>
+            <input id="timeEnd" onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.timeEnd} type="time" className="timeEnd" ></input>
+            {formik.touched.timeEnd && formik.errors.timeEnd ? <p>{formik.errors.timeEnd}</p> : null}
+          </div>
+        </div>
       </div>
 
-      <div className={style.formInput}>
-        <textarea id="evDesc" onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.evDesc} className={style.evDesc} placeholder="Describe the event..."></textarea> 
+      <div className="checkBoxes">
+        <legend className="labelBus">Please select which bus/buses you would like to book:</legend>
+        <input type="checkbox" className="smallChoice" name="buses" value="smallBus" id="buses"/>
+        <label className="busCheck" for="smallChoice">Smaller Bus (Capacity of 14)</label><br></br>
+        <input type="checkbox" className="bigChoice" name="buses" value="bigBus" id="buses"/>
+        <label className="busCheck" for="bigChoice">Big Bus (Capacity of 21)</label>
+      </div>
+
+      <div className="formInput">
+        <textarea id="evDesc" onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.evDesc} className="evDesc" placeholder="Describe the event..."></textarea> 
         {formik.touched.evDesc && formik.errors.evDesc ? <p>{formik.errors.evDesc}</p> : null}
       </div>
 
-      <input type="submit" className="sub-button"></input>
+      <input type="submit" className="subButton"></input>
     </form>
-    </div>
+    
     </div>
   );
 }
+
+
+export default App;
