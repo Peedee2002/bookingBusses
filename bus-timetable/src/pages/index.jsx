@@ -18,9 +18,9 @@ const IndexPage = () => {
   const [data, setData] = useState({});
   const [bus, setBus] = useState("");
   const [timeStart, setTimeStart] = useState("");
-  useEffect(() => {
-    fetch(`http://localhost:3000/api/get/${bus}/${timeStart}`)
-  })
+  // useEffect(() => {
+  //   fetch(`http://localhost:3000/api/get/${bus}/${timeStart}`)
+  // })
   return (
     <main style={pageStyles}>
       <title>St Abraam Bus timetable</title>

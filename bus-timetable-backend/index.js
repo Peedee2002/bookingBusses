@@ -8,7 +8,6 @@ app.use(express.json())
 const client = new MongoClient("mongodb://user:user@localhost:27017");
 // databases inside connection
 const db = client.db("busses");
-// multiple collections possible
 
 app.get('/api/:bus/get/:timeStart', async (req, res) => {
     const conn = db.collection(req.params.bus);
