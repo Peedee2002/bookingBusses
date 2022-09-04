@@ -4,6 +4,7 @@ import { Field, FormikProvider, useFormik } from 'formik';
 import * as Yup from 'yup';
 import './index.css';
 import { RadioButton } from "../../components/RadioButton";
+import dayjs from 'dayjs';
 
 function App() {
   const today = new Date();
@@ -41,9 +42,16 @@ function App() {
 
     onSubmit: (values) =>{
       setShowResults(true)
+      const given = {...values}
+      given.start = dayjs(values.dateStart) + dayjs(values.timeStart)
+      given.end = dayjs(values.dateEnd) + dayjs(values.timeEnd)
+      delete given.dateEnd
+      delete given.dateStart
+      delete given.timeStart
+      delete given.timeEnd
       fetch(`http://localhost:3000/api/request/${values.bus}`, {
         method: 'POST',
-        body: values
+        body: given
       })
     }
   })

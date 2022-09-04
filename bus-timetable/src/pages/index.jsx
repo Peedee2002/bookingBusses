@@ -1,7 +1,5 @@
 import * as React from "react"
-import { useState } from "react"
-import { useEffect } from "react"
-import TimeTable from "react-timetable-events"
+
 // styles
 const pageStyles = {
   color: "#232129",
@@ -14,36 +12,26 @@ const headingStyles = {
   maxWidth: 320,
 }
 
+const calendarStyles = {
+  border: "solid 1px #777",
+  width: "1000px",
+  height: "800px",
+}
+
 const IndexPage = () => {
-  const [data, setData] = useState({});
-  const [bus, setBus] = useState("");
-  const [timeStart, setTimeStart] = useState("");
-  // useEffect(() => {
-  //   fetch(`http://localhost:3000/api/get/${bus}/${timeStart}`)
-  // })
+
   return (
     <main style={pageStyles}>
       <title>St Abraam Bus timetable</title>
       <a href="/request">
         make a request
       </a>
-      
+
       <h1 style={headingStyles}>
         Bus TimeTable
       </h1>
-      <TimeTable
-        events={{
-          monday: [],
-          tuesday: [],
-          wednesday: [],
-          thursday: [],
-          friday: [],
-          saturday: [],
-          sunday: [],
-        }}
-        style={{ height: '500px' }}
-      />
-    </main>
+      <iframe style={calendarStyles} src="https://calendar.google.com/calendar/embed?height=600&wkst=1&bgcolor=%23ffffff&ctz=Australia%2FSydney&showTitle=0&showPrint=0&showCalendars=0&showTz=0&showDate=1&src=aHN2YmY5MGoyaHE4NjloYnVhY2RzZGl1dHNAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&src=a3A2cWQ0YnY2ZmlxY3RzZ2Y3cDBzNnZwbjBAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&src=aXJzanBrNmhvNnFicjNtbmpva2E4cjlmZzBAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&src=YmEwYjVicDZpZms2NWtzcGw0aHU4NXY1b2dAZ3JvdXAuY2FsZW5kYXIuZ29vZ2xlLmNvbQ&color=%23A79B8E&color=%238E24AA&color=%23795548&color=%23A79B8E"></iframe>
+      </main>
   )
 }
 
