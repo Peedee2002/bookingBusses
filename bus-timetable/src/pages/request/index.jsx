@@ -6,6 +6,8 @@ import './index.css';
 import { RadioButton } from "../../components/RadioButton";
 import dayjs from 'dayjs';
 
+const BACKEND_API = process.env.NODE_ENV === 'production' ? "" : "http://localhost:3000"
+
 function App() {
   const today = new Date();
 
@@ -43,15 +45,19 @@ function App() {
     onSubmit: (values) =>{
       setShowResults(true)
       const given = {...values}
-      given.start = dayjs(values.dateStart) + dayjs(values.timeStart)
-      given.end = dayjs(values.dateEnd) + dayjs(values.timeEnd)
+      given.start = dayjs(values.dateStart + values.timeStart).toDate()
+      console.log(given.start)
+      given.end = dayjs(values.dateEnd + values.timeEnd).toDate()
       delete given.dateEnd
       delete given.dateStart
       delete given.timeStart
       delete given.timeEnd
-      fetch(`http://localhost:3000/api/request/${values.bus}`, {
+      fetch(BACKEND_API + `/api/${values.bus}/request`, {
         method: 'POST',
-        body: given
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(given)
       })
     }
   })
